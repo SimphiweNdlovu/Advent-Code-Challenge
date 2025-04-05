@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.IO;
 
 class Program
@@ -13,8 +13,8 @@ class Program
             return;
         }
 
-        var aList = new IntList();
-        var bList = new IntList();
+        var leftList = new IntList();
+        var rightList = new IntList();
 
         try
         {
@@ -23,33 +23,43 @@ class Program
             foreach (var line in lines)
             {
                 var parts = line.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
-                
-
                 if (parts.Length != 2)
                     continue;
 
                 if (int.TryParse(parts[0], out int a) && int.TryParse(parts[1], out int b))
                 {
-                    aList.Add(a);
-                    bList.Add(b);
+                    leftList.Add(a);
+                    rightList.Add(b);
                 }
             }
 
-            aList.Sort();
-            bList.Sort();
+            long similarityScore = 0;
 
-            long total = 0;
-            for (int i = 0; i < aList.Count; i++)
+            for (int i = 0; i < leftList.Count; i++)
             {
-                total += Math.Abs(aList[i] - bList[i]);
+                int value = leftList[i];
+                int count = CountOccurrences(rightList, value);
+                similarityScore += value * count;
             }
 
-            Console.WriteLine("Total distance: " + total);
+            Console.WriteLine("Similarity score: " + similarityScore);
         }
         catch (Exception e)
         {
-            Console.WriteLine("Oops! Something went wrong:");
+            Console.WriteLine("Something went wrong:");
             Console.WriteLine(e.Message);
         }
+    }
+
+    // Count how many times a value appears in the list
+    static int CountOccurrences(IntList list, int value)
+    {
+        int count = 0;
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (list[i] == value)
+                count++;
+        }
+        return count;
     }
 }
