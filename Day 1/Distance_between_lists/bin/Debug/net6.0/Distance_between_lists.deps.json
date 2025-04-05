@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Distance_between_lists/1.0.0": {
+        "runtime": {
+          "Distance_between_lists.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Distance_between_lists/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,15 @@
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/similarity_score/bin/Debug/net6.0/similarity_score
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/similarity_score/bin/Debug/net6.0/similarity_score.deps.json
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/similarity_score/bin/Debug/net6.0/similarity_score.runtimeconfig.json
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/similarity_score/bin/Debug/net6.0/similarity_score.dll
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/similarity_score/bin/Debug/net6.0/similarity_score.pdb
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/similarity_score/obj/Debug/net6.0/similarity_score.csproj.AssemblyReference.cache
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/similarity_score/obj/Debug/net6.0/similarity_score.GeneratedMSBuildEditorConfig.editorconfig
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/similarity_score/obj/Debug/net6.0/similarity_score.AssemblyInfoInputs.cache
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/similarity_score/obj/Debug/net6.0/similarity_score.AssemblyInfo.cs
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/similarity_score/obj/Debug/net6.0/similarity_score.csproj.CoreCompileInputs.cache
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/similarity_score/obj/Debug/net6.0/similarity_score.dll
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/similarity_score/obj/Debug/net6.0/refint/similarity_score.dll
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/similarity_score/obj/Debug/net6.0/similarity_score.pdb
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/similarity_score/obj/Debug/net6.0/similarity_score.genruntimeconfig.cache
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/similarity_score/obj/Debug/net6.0/ref/similarity_score.dll
