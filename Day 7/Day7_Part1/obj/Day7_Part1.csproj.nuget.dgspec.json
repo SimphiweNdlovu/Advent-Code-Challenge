@@ -1,0 +1,61 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 7/Day7_Part1/Day7_Part1.csproj": {}
+  },
+  "projects": {
+    "/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 7/Day7_Part1/Day7_Part1.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 7/Day7_Part1/Day7_Part1.csproj",
+        "projectName": "Day7_Part1",
+        "projectPath": "/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 7/Day7_Part1/Day7_Part1.csproj",
+        "packagesPath": "/home/simphiwe/.nuget/packages/",
+        "outputPath": "/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 7/Day7_Part1/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/simphiwe/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/253/sdk/6.0.428/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
