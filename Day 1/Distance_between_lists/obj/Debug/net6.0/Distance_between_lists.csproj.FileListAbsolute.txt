@@ -1,0 +1,15 @@
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/Distance_between_lists/bin/Debug/net6.0/Distance_between_lists
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/Distance_between_lists/bin/Debug/net6.0/Distance_between_lists.deps.json
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/Distance_between_lists/bin/Debug/net6.0/Distance_between_lists.runtimeconfig.json
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/Distance_between_lists/bin/Debug/net6.0/Distance_between_lists.dll
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/Distance_between_lists/bin/Debug/net6.0/Distance_between_lists.pdb
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/Distance_between_lists/obj/Debug/net6.0/Distance_between_lists.csproj.AssemblyReference.cache
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/Distance_between_lists/obj/Debug/net6.0/Distance_between_lists.GeneratedMSBuildEditorConfig.editorconfig
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/Distance_between_lists/obj/Debug/net6.0/Distance_between_lists.AssemblyInfoInputs.cache
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/Distance_between_lists/obj/Debug/net6.0/Distance_between_lists.AssemblyInfo.cs
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/Distance_between_lists/obj/Debug/net6.0/Distance_between_lists.csproj.CoreCompileInputs.cache
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/Distance_between_lists/obj/Debug/net6.0/Distance_between_lists.dll
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/Distance_between_lists/obj/Debug/net6.0/refint/Distance_between_lists.dll
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/Distance_between_lists/obj/Debug/net6.0/Distance_between_lists.pdb
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/Distance_between_lists/obj/Debug/net6.0/Distance_between_lists.genruntimeconfig.cache
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 1/Distance_between_lists/obj/Debug/net6.0/ref/Distance_between_lists.dll
