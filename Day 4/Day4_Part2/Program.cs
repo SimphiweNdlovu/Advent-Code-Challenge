@@ -44,7 +44,7 @@ class Program
     }
        static bool IsMASPair(char first, char second)
        {
-        return true;
+              return (first == 'M' && second == 'S') || (first == 'S' && second == 'M');
        }
 
    
