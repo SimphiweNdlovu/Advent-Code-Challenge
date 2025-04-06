@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.IO;
 
 class Program
@@ -14,12 +13,13 @@ class Program
         }
 
         string input = File.ReadAllText(path);
-        var lines = input.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        var grid = input.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        int count = 0;
 
-         int rows = grid.Length;
+        int rows = grid.Length;
         int cols = grid[0].Length;
 
-          for (int row = 1; row < rows - 1; row++)
+        for (int row = 1; row < rows - 1; row++)
         {
             for (int col = 1; col < cols - 1; col++)
             {
@@ -42,10 +42,9 @@ class Program
 
         Console.WriteLine(count);
     }
-       static bool IsMASPair(char first, char second)
-       {
-              return (first == 'M' && second == 'S') || (first == 'S' && second == 'M');
-       }
 
-   
+    static bool IsMASPair(char first, char second)
+    {
+        return (first == 'M' && second == 'S') || (first == 'S' && second == 'M');
+    }
 }
