@@ -40,7 +40,7 @@ class Program
                     break;
                 }
             }
-            if (startRow != -1) break;
+            if (startRow != -1) break; // Break outer loop if guard is found
 
 
         }
@@ -63,7 +63,7 @@ class Program
             // Check the next cell
             if (map[newRow][newCol] == '#')  // Obstacle encountered, turn right
             {
-                currentDirection = (currentDirection + 1) % 2;
+                currentDirection = (currentDirection + 1) % 4;
             }
             else  // Move forward
             {
