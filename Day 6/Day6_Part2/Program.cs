@@ -68,10 +68,10 @@ class Program
                     while (true)
                     {
                         if (row < 0 || row >= rows || col < 0 || col >= cols)
-                            break;
+                            break;  // Stop if out of bounds
 
                         if (modifiedMap[row][col] == '#')
-                            break;
+                            break;  // Stop if hit an obstacle
 
                         if (visited.Contains((row, col, dir))) // Loop detected
                         {
@@ -84,6 +84,12 @@ class Program
                         // Move forward or turn
                         int newRow = row + directions[dir, 0];
                         int newCol = col + directions[dir, 1];
+
+                        // Check bounds before accessing modifiedMap
+                        if (newRow < 0 || newRow >= rows || newCol < 0 || newCol >= cols)
+                        {
+                            break;
+                        }
 
                         if (modifiedMap[newRow][newCol] == '#')
                         {
