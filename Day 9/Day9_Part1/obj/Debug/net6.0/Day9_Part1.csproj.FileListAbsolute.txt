@@ -1,0 +1,15 @@
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 9/Day9_Part1/bin/Debug/net6.0/Day9_Part1
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 9/Day9_Part1/bin/Debug/net6.0/Day9_Part1.deps.json
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 9/Day9_Part1/bin/Debug/net6.0/Day9_Part1.runtimeconfig.json
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 9/Day9_Part1/bin/Debug/net6.0/Day9_Part1.dll
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 9/Day9_Part1/bin/Debug/net6.0/Day9_Part1.pdb
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 9/Day9_Part1/obj/Debug/net6.0/Day9_Part1.csproj.AssemblyReference.cache
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 9/Day9_Part1/obj/Debug/net6.0/Day9_Part1.GeneratedMSBuildEditorConfig.editorconfig
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 9/Day9_Part1/obj/Debug/net6.0/Day9_Part1.AssemblyInfoInputs.cache
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 9/Day9_Part1/obj/Debug/net6.0/Day9_Part1.AssemblyInfo.cs
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 9/Day9_Part1/obj/Debug/net6.0/Day9_Part1.csproj.CoreCompileInputs.cache
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 9/Day9_Part1/obj/Debug/net6.0/Day9_Part1.dll
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 9/Day9_Part1/obj/Debug/net6.0/refint/Day9_Part1.dll
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 9/Day9_Part1/obj/Debug/net6.0/Day9_Part1.pdb
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 9/Day9_Part1/obj/Debug/net6.0/Day9_Part1.genruntimeconfig.cache
+/home/simphiwe/coding challenge/Advent-Code-Challenge/Day 9/Day9_Part1/obj/Debug/net6.0/ref/Day9_Part1.dll
