@@ -9,105 +9,89 @@ class Program
         var path = "input.txt";
         if (!File.Exists(path)) return;
 
-        string[] map = File.ReadAllLines(path);
-        int rows = map.Length;
-        int cols = map[0].Length;
+        string[] mapLines = File.ReadAllLines(path);
+        int rows = mapLines.Length;
+        int cols = mapLines[0].Length;
+        char[,] map = new char[rows, cols];
 
-        // Directions (up, right, down, left)
+        for (int r = 0; r < rows; r++)
+            for (int c = 0; c < cols; c++)
+                map[r, c] = mapLines[r][c];
+
+        // Directions: up, right, down, left
         int[,] directions = { {-1, 0}, {0, 1}, {1, 0}, {0, -1} };
-        int currentDirection = 0; // Initially the guard is facing up (^)
 
-        // Find the initial position of the guard
-        int startRow = -1, startCol = -1;
+        int startRow = -1, startCol = -1, startDir = 0;
+
+        // Find guard start
         for (int r = 0; r < rows; r++)
         {
             for (int c = 0; c < cols; c++)
             {
-                if (map[r][c] == '^' || map[r][c] == 'v' || map[r][c] == '>' || map[r][c] == '<')
+                char ch = map[r, c];
+                if (ch == '^' || ch == 'v' || ch == '<' || ch == '>')
                 {
                     startRow = r;
                     startCol = c;
-                    if (map[r][c] == '^') currentDirection = 0;
-                    else if (map[r][c] == '>') currentDirection = 1;
-                    else if (map[r][c] == 'v') currentDirection = 2;
-                    else if (map[r][c] == '<') currentDirection = 3;
+                    startDir = ch == '^' ? 0 : ch == '>' ? 1 : ch == 'v' ? 2 : 3;
                     break;
                 }
             }
             if (startRow != -1) break;
         }
 
-        // Call the method to count the possible positions for the new obstruction
-        int result = CountLoopPositions(map, rows, cols, startRow, startCol, currentDirection, directions);
+        int loopPositions = 0;
 
-        // Output the result
-        Console.WriteLine(result);
-    }
-
-    // Function to simulate the guard's movement and detect loops with a new obstruction
-    static int CountLoopPositions(string[] map, int rows, int cols, int startRow, int startCol, int currentDirection, int[,] directions)
-    {
-        HashSet<(int, int, int)> visited = new HashSet<(int, int, int)>();
-        List<(int, int)> possiblePositions = new List<(int, int)>();
-
-        // Try placing a new obstruction in each free space (.)
         for (int r = 0; r < rows; r++)
         {
             for (int c = 0; c < cols; c++)
             {
-                if (map[r][c] == '.' && (r != startRow || c != startCol))
-                {
-                    // Simulate with a new obstruction at (r, c)
-                    string[] modifiedMap = (string[])map.Clone();
-                    modifiedMap[r] = modifiedMap[r].Substring(0, c) + '#' + modifiedMap[r].Substring(c + 1);
+                if (map[r, c] != '.') continue;
+                if (r == startRow && c == startCol) continue;
 
-                    int row = startRow, col = startCol, dir = currentDirection;
-                    bool isLoop = false;
+                // Temporarily add obstacle
+                map[r, c] = '#';
 
-                    // Track visited positions in the format (row, col, direction)
-                    while (true)
-                    {
-                        if (row < 0 || row >= rows || col < 0 || col >= cols)
-                            break;  // Stop if out of bounds
+                if (WouldEnterLoop(map, startRow, startCol, startDir, directions))
+                    loopPositions++;
 
-                        if (modifiedMap[row][col] == '#')
-                            break;  // Stop if hit an obstacle
-
-                        if (visited.Contains((row, col, dir))) // Loop detected
-                        {
-                            isLoop = true;
-                            break;
-                        }
-
-                        visited.Add((row, col, dir));
-
-                        // Move forward or turn
-                        int newRow = row + directions[dir, 0];
-                        int newCol = col + directions[dir, 1];
-
-                        // Check bounds before accessing modifiedMap
-                        if (newRow < 0 || newRow >= rows || newCol < 0 || newCol >= cols)
-                        {
-                            break;
-                        }
-
-                        if (modifiedMap[newRow][newCol] == '#')
-                        {
-                            dir = (dir + 1) % 4; // Turn right (clockwise)
-                        }
-                        else
-                        {
-                            row = newRow;
-                            col = newCol;
-                        }
-                    }
-
-                    if (isLoop)
-                        possiblePositions.Add((r, c));
-                }
+                // Revert
+                map[r, c] = '.';
             }
         }
 
-        return possiblePositions.Count;
+        Console.WriteLine("Number of positions that cause a loop: " + loopPositions);
+    }
+
+    static bool WouldEnterLoop(char[,] map, int startRow, int startCol, int startDir, int[,] directions)
+    {
+        int rows = map.GetLength(0);
+        int cols = map.GetLength(1);
+        HashSet<(int, int, int)> visitedStates = new HashSet<(int, int, int)>();
+
+        int row = startRow, col = startCol, dir = startDir;
+
+        while (true)
+        {
+            var state = (row, col, dir);
+            if (visitedStates.Contains(state))
+                return true;
+
+            visitedStates.Add(state);
+
+            int newRow = row + directions[dir, 0];
+            int newCol = col + directions[dir, 1];
+
+            if (newRow < 0 || newRow >= rows || newCol < 0 || newCol >= cols)
+                return false;
+
+            if (map[newRow, newCol] == '#')
+                dir = (dir + 1) % 4; // turn right
+            else
+            {
+                row = newRow;
+                col = newCol;
+            }
+        }
     }
 }
