@@ -1,98 +1,159 @@
 ﻿using System;
-using System.Collections.Generic;
-
-class Prize
-{
-    public long X { get; set; }
-    public long Y { get; set; }
-    public bool IsReachable { get; set; }
-    public int MinPresses { get; set; }
-}
-
-class Button
-{
-    public long DX { get; set; }
-    public long DY { get; set; }
-}
+using System.IO;
 
 class Program
 {
     static void Main()
     {
-        // Sample input - in reality, you would parse this from the actual input
-        var prizes = new List<Prize>
+        string[] lines = File.ReadAllLines("input.txt");
+
+        long totalCost = 0;
+        int prizeCount = 0;
+
+        for (int i = 0; i < lines.Length; i += 4)
         {
-            new Prize { X = 3288, Y = 1772 },
-            new Prize { X = 12452, Y = 2246 },
-            new Prize { X = 10554, Y = 7484 },
-            new Prize { X = 5960, Y = 3140 },
-            new Prize { X = 15646, Y = 8526 },
-            // Add all other prizes here...
-        };
+            // Parse A and B button moves
+            var aParts = lines[i].Split(new[] { "X+", ", Y+" }, StringSplitOptions.RemoveEmptyEntries);
+            var bParts = lines[i + 1].Split(new[] { "X+", ", Y+" }, StringSplitOptions.RemoveEmptyEntries);
+            var pParts = lines[i + 2].Split(new[] { "X=", ", Y=" }, StringSplitOptions.RemoveEmptyEntries);
 
-        var buttons = new List<Button[]>
-        {
-            new Button[] { new Button { DX = 57, DY = 16 }, new Button { DX = 20, DY = 74 } },
-            new Button[] { new Button { DX = 60, DY = 17 }, new Button { DX = 18, DY = 40 } },
-            new Button[] { new Button { DX = 53, DY = 30 }, new Button { DX = 12, DY = 48 } },
-            new Button[] { new Button { DX = 94, DY = 41 }, new Button { DX = 16, DY = 34 } },
-            new Button[] { new Button { DX = 51, DY = 15 }, new Button { DX = 16, DY = 53 } },
-            // Add all other button pairs here...
-        };
+            long ax = long.Parse(aParts[1]);
+            long ay = long.Parse(aParts[2]);
+            long bx = long.Parse(bParts[1]);
+            long by = long.Parse(bParts[2]);
+            long px = long.Parse(pParts[1]) + 10000000000000;
+            long py = long.Parse(pParts[2]) + 10000000000000;
 
-        foreach (var prize in prizes)
-        {
-            prize.IsReachable = false;
-            prize.MinPresses = int.MaxValue;
+            long cx = px;
+            long cy = py;
 
-            // We'll use BFS to find the minimal presses for each prize
-            var visited = new HashSet<(long, long)>();
-            var queue = new Queue<(long x, long y, int presses)>();
+            long D = ax * by - ay * bx;
 
-            queue.Enqueue((0, 0, 0));
+            bool solvable = false;
+            long minCost = long.MaxValue;
 
-            while (queue.Count > 0)
+            if (D != 0)
             {
-                var current = queue.Dequeue();
-                if (current.x == prize.X && current.y == prize.Y)
-                {
-                    prize.IsReachable = true;
-                    prize.MinPresses = current.presses;
-                    break;
-                }
+                long a_num = by * cx - bx * cy;
+                long b_num = ax * cy - ay * cx;
 
-                if (current.presses > 100) // Practical limit to prevent infinite loops
+                if (a_num % D != 0 || b_num % D != 0)
+                {
                     continue;
+                }
 
-                foreach (var buttonPair in buttons)
+                long a = a_num / D;
+                long b = b_num / D;
+
+                if (a >= 0 && b >= 0)
                 {
-                    foreach (var button in buttonPair)
-                    {
-                        long newX = current.x + button.DX;
-                        long newY = current.y + button.DY;
-                        if (!visited.Contains((newX, newY)))
-                        {
-                            visited.Add((newX, newY));
-                            queue.Enqueue((newX, newY, current.presses + 1));
-                        }
-                    }
+                    solvable = true;
+                    minCost = 3 * a + b;
                 }
             }
-        }
-
-        // Calculate total minimal tokens (presses) for all reachable prizes
-        int totalTokens = 0;
-        int reachableCount = 0;
-        foreach (var prize in prizes)
-        {
-            if (prize.IsReachable)
+            else
             {
-                totalTokens += prize.MinPresses;
-                reachableCount++;
+                // Check if the system is consistent
+                if (ax * cy != ay * cx || bx * cy != by * cx)
+                {
+                    continue;
+                }
+
+                // Solve Ax * a + Bx * b = Cx
+                long g = GCD(ax, bx);
+                if (cx % g != 0)
+                {
+                    continue;
+                }
+
+                (long gcd, long x, long y) = ExtendedEuclidean(ax, bx);
+                long factor = cx / g;
+
+                long a0 = x * factor;
+                long b0 = y * factor;
+
+                long stepA = bx / g;
+                long stepB = ax / g;
+
+                // Compute kMin and kMax
+                long kMin = Ceiling(-a0, stepA);
+                long kMax = b0 / stepB;
+
+                if (kMin > kMax)
+                {
+                    continue;
+                }
+
+                // Determine the optimal k
+                long coeff = 3 * stepA - stepB;
+
+                long bestK;
+                if (coeff > 0)
+                {
+                    bestK = kMin;
+                }
+                else if (coeff < 0)
+                {
+                    bestK = kMax;
+                }
+                else
+                {
+                    bestK = kMin; // All k in range give same cost
+                }
+
+                long a_kMin = a0 + bestK * stepA;
+                long b_kMin = b0 - bestK * stepB;
+
+                long a_kMax = a0 + kMax * stepA;
+                long b_kMax = b0 - kMax * stepB;
+
+                // Ensure the calculated a and b are non-negative
+                if (a_kMin >= 0 && b_kMin >= 0)
+                {
+                    minCost = 3 * a_kMin + b_kMin;
+                    solvable = true;
+                }
+                else if (a_kMax >= 0 && b_kMax >= 0)
+                {
+                    minCost = 3 * a_kMax + b_kMax;
+                    solvable = true;
+                }
+            }
+
+            if (solvable)
+            {
+                totalCost += minCost;
+                prizeCount++;
             }
         }
 
-        Console.WriteLine($"Reachable prizes: {reachableCount}");
-        Console.WriteLine($"Total tokens needed: {totalTokens}");
+        Console.WriteLine("Total Prizes Won: " + prizeCount);
+        Console.WriteLine("Total Minimum Token Cost: " + totalCost);
+    }
+
+    static long GCD(long a, long b)
+    {
+        while (b != 0)
+        {
+            long temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+
+    static (long gcd, long x, long y) ExtendedEuclidean(long a, long b)
+    {
+        if (b == 0)
+            return (a, 1, 0);
+        var (g, x1, y1) = ExtendedEuclidean(b, a % b);
+        long x = y1;
+        long y = x1 - (a / b) * y1;
+        return (g, x, y);
+    }
+
+    static long Ceiling(long numerator, long denominator)
+    {
+        return (numerator + denominator - 1) / denominator;
     }
 }
